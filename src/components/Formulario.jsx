@@ -16,9 +16,9 @@ const Formulario = () => {
             try{
                 const db = firebase.firestore()
                 const data = await db.collection('frutas').get()
-                const arrayData = data.docs.map(doc => (
+                const arrayData = data.docs.map(item => (
                     {
-                    id: doc.id, ... doc.data()
+                    id: item.id, ... item.data()
                     }
                 ))
                 //console.log(arrayData)
