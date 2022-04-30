@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { nanoid } from 'nanoid'
 import {firebase} from '../firebase'
 
@@ -18,7 +18,7 @@ const Formulario = () => {
                 const data = await db.collection('frutas').get()
                 const arrayData = data.docs.map(item => (
                     {
-                    id: item.id, ... item.data()
+                    id:item.id, ...item.data()
                     }
                 ))
                 //console.log(arrayData)
@@ -49,16 +49,16 @@ const Formulario = () => {
         try {
             const db = firebase.firestore()
             const nuevaFruta = {
-                nombreFruta: fruta,
-                nombreDescripcion: descripcion 
+                nombreFruta:fruta,
+                nombreDescripcion:descripcion 
             }
     
-            const data = await db.collection('frutas').add(nuevaFruta)
+            await db.collection('frutas').add(nuevaFruta)
     
             
             setListaFrutas([
-                ... listaFrutas,
-                { id: nanoid(), nombreFruta: fruta, nombreDescripcion: descripcion }
+                ...listaFrutas,
+                { id:nanoid(), nombreFruta:fruta, nombreDescripcion:descripcion }
             ])
     
             e.target.reset()
